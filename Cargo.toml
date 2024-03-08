@@ -12,7 +12,7 @@ version = "0.1.1"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-refined-float = {version = "0.1.0", path = "crates/refined-float"}
+refined-float = {version = "0.1.1", path = "crates/refined-float"}
 
 [workspace]
 members = ["crates/refined-float"]
