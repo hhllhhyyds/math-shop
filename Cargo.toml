@@ -1,19 +1,18 @@
 [package]
 authors = ["hhllhhyyds <hhllhhyyds@sina.com>"]
 description = "mathematical tools in pure Rust"
+edition = "2021"
 keywords = ["math"]
 license = "MIT"
 name = "math-shop"
 readme = "README.md"
 repository = "https://github.com/hhllhhyyds/math-shop"
 version = "0.1.1"
-edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-refined-float = {path = "crates/refined-float"}
-
+refined-float = {version = "0.1.0", path = "crates/refined-float"}
 
 [workspace]
 members = ["crates/refined-float"]
