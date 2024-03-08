@@ -1,10 +1,10 @@
 import os
 
 cmds = [
-    'cargo clippy --all',
+    'cargo clippy --all --all-features',
     'cargo clippy --package "refined-float" --no-default-features --features libm',
 
-    'cargo test --all',
+    'cargo test --all --all-features',
     'cargo test --package "refined-float" --no-default-features --features libm'
 ]
 

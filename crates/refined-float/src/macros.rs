@@ -65,6 +65,51 @@ macro_rules! impl_complex_fns {
     };
 }
 
+macro_rules! impl_approx_traits {
+    ($fl_ty: ty, $inner_ty: ty) => {
+        #[cfg(feature = "approx")]
+        mod impl_approx {
+            impl approx::AbsDiffEq for $fl_ty {
+                type Epsilon = Self;
+
+                fn default_epsilon() -> Self::Epsilon {
+                    Self(<$inner_ty as approx::AbsDiffEq>::default_epsilon())
+                }
+
+                fn abs_diff_eq(&self, other: &Self, epsilon: Self::Epsilon) -> bool {
+                    approx::AbsDiffEq::abs_diff_eq(&self.0, &other.0, epsilon.0)
+                }
+            }
+
+            impl approx::RelativeEq for $fl_ty {
+                fn default_max_relative() -> Self::Epsilon {
+                    Self(<$inner_ty as approx::RelativeEq>::default_max_relative())
+                }
+
+                fn relative_eq(
+                    &self,
+                    other: &Self,
+                    epsilon: Self::Epsilon,
+                    max_relative: Self::Epsilon,
+                ) -> bool {
+                    approx::RelativeEq::relative_eq(&self.0, &other.0, epsilon.0, max_relative.0)
+                }
+            }
+
+            impl approx::UlpsEq for $fl_ty {
+                fn default_max_ulps() -> u32 {
+                    <$inner_ty as approx::UlpsEq>::default_max_ulps()
+                }
+
+                fn ulps_eq(&self, other: &Self, epsilon: Self::Epsilon, max_ulps: u32) -> bool {
+                    approx::UlpsEq::ulps_eq(&self.0, &other.0, epsilon.0, max_ulps)
+                }
+            }
+        }
+    };
+}
+
+pub(crate) use impl_approx_traits;
 pub(crate) use impl_arithmetic_trait;
 pub(crate) use impl_complex_fns;
 pub(crate) use impl_debug_display_trait;

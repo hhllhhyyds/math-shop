@@ -1,5 +1,6 @@
 use crate::macros::{
-    impl_arithmetic_trait, impl_complex_fns, impl_debug_display_trait, impl_neg_trait,
+    impl_approx_traits, impl_arithmetic_trait, impl_complex_fns, impl_debug_display_trait,
+    impl_neg_trait,
 };
 
 #[derive(Clone, Copy, PartialEq, PartialOrd)]
@@ -19,3 +20,5 @@ impl_complex_fns!(Float64, core::primitive::f64, sin, sin);
 impl_complex_fns!(Float64, core::primitive::f64, asin, asin);
 impl_complex_fns!(Float64, core::primitive::f64, tan, tan);
 impl_complex_fns!(Float64, core::primitive::f64, atan, atan);
+
+impl_approx_traits!(crate::Float64, f64);
