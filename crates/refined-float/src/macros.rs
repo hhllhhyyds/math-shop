@@ -20,6 +20,23 @@ macro_rules! impl_arithmetic_trait {
 }
 
 #[macro_export]
+macro_rules! impl_sum_product {
+    ($fl_ty: ty) => {
+        impl core::iter::Sum for $fl_ty {
+            fn sum<I: Iterator<Item = Self>>(iter: I) -> Self {
+                Self(iter.map(|x| x.0).sum())
+            }
+        }
+
+        impl core::iter::Product for $fl_ty {
+            fn product<I: Iterator<Item = Self>>(iter: I) -> Self {
+                Self(iter.map(|x| x.0).product())
+            }
+        }
+    };
+}
+
+#[macro_export]
 macro_rules! impl_neg_trait {
     ($fl_ty: ty) => {
         impl core::ops::Neg for $fl_ty {
@@ -61,6 +78,15 @@ macro_rules! impl_complex_fns {
                 #[cfg(all(not(feature = "std"), feature = "libm"))]
                 return Self(libm::Libm::<$inner_ty>::$fn(self.0));
             }
+        }
+    };
+}
+
+#[macro_export]
+macro_rules! impl_float_const {
+    ($fl_ty: tt,$name:tt, $value: expr) => {
+        impl $fl_ty {
+            pub const $name: $fl_ty = $fl_ty($value);
         }
     };
 }
@@ -113,4 +139,6 @@ pub(crate) use impl_approx_traits;
 pub(crate) use impl_arithmetic_trait;
 pub(crate) use impl_complex_fns;
 pub(crate) use impl_debug_display_trait;
+pub(crate) use impl_float_const;
 pub(crate) use impl_neg_trait;
+pub(crate) use impl_sum_product;
