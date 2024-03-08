@@ -1,5 +1,9 @@
 [package]
+authors = ["hhllhhyyds <hhllhhyyds@sina.com>"]
+description = "Refined float with a subset of functions of std float"
 edition = "2021"
+keywords = ["math"]
+license = "MIT"
 name = "refined-float"
 version = "0.1.0"
 
