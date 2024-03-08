@@ -1,3 +1,5 @@
+#![deny(warnings)]
+
 mod float32;
 mod float64;
 mod macros;
