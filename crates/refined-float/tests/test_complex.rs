@@ -1,5 +1,8 @@
+use std::f32::consts::PI;
+
 #[cfg(feature = "approx")]
 use approx::AbsDiffEq;
+use refined_float::FloatTraitsForComplex;
 use refined_float::{Complex, Float32, Float64};
 
 #[test]
@@ -84,4 +87,26 @@ fn test_neg() {
 
     let a = Complex::new(Float32(0.3), Float32(-0.4));
     assert_eq!(-(-a), a);
+}
+
+#[test]
+fn test_sin_cos_f32() {
+    let angle = PI;
+    let half = angle / 2.0;
+    let half = Float32(half);
+    let (a, b) = half.sin_cos();
+    assert_eq!(a, Float32(1.0));
+    println!("b = {}", b);
+    assert!(Float32(0.0).abs_diff_eq(&b, Float32(1e-7)));
+}
+
+#[test]
+fn test_sin_cos_f64() {
+    let angle = std::f64::consts::PI;
+    let half = angle / 2.0;
+    let half = Float64(half);
+    let (a, b) = half.sin_cos();
+    assert_eq!(a, Float64(1.0));
+    println!("b = {}", b);
+    assert!(Float64(0.0).abs_diff_eq(&b, Float64(1e-16)));
 }
