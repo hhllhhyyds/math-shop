@@ -110,6 +110,16 @@ impl<F: FloatTraitsForComplex> Complex<F> {
     }
 
     #[inline]
+    pub fn length(&self) -> F {
+        (self.imag.square() + self.real.square()).sqrt()
+    }
+
+    #[inline]
+    pub fn angle(&self) -> F {
+        (self.imag / self.real).atan()
+    }
+
+    #[inline]
     pub fn to_len_angle(&self) -> (F, F) {
         let angle = (self.imag / self.real).atan();
         let len = (self.imag.square() + self.real.square()).sqrt();
