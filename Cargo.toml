@@ -7,12 +7,12 @@ license = "MIT"
 name = "math-shop"
 readme = "README.md"
 repository = "https://github.com/hhllhhyyds/math-shop"
-version = "0.1.2"
+version = "0.1.3"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-refined-float = {version = "0.1.1", path = "crates/refined-float"}
+refined-float = {version = "0.2.0", path = "crates/refined-float"}
 
 [workspace]
 members = ["crates/refined-float"]
