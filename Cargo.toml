@@ -16,3 +16,8 @@ refined-float = {version = "0.2.0", path = "crates/refined-float"}
 
 [workspace]
 members = ["crates/refined-float", "crates/fft-shop"]
+
+[workspace.dependencies]
+approx = "0.5.1"
+plotters = "0.3.5"
+rand = "0.8.5"

@@ -14,11 +14,11 @@ default = ["std", "approx"]
 std = []
 
 [dependencies]
-approx = {version = "0.5.1", optional = true}
+approx = {workspace = true, optional = true}
 libm = {version = "0.2.8", optional = true}
 
 [dev-dependencies]
-plotters = "0.3.5"
+plotters = {workspace = true}
 
 [[example]]
 name = "mandelbrot"

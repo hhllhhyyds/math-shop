@@ -27,6 +27,8 @@ pub trait FloatTraitsForComplex:
     fn cos(&self) -> Self;
     fn atan(&self) -> Self;
     fn sqrt(&self) -> Self;
+    fn from_f64(x: f64) -> Self;
+    fn from_f32(x: f32) -> Self;
 
     const ZERO: Self;
     const ONE: Self;
@@ -62,6 +64,16 @@ impl FloatTraitsForComplex for Float32 {
         Float32::atan(*self)
     }
 
+    #[inline]
+    fn from_f32(x: f32) -> Self {
+        Self(x)
+    }
+
+    #[inline]
+    fn from_f64(x: f64) -> Self {
+        Self(x as f32)
+    }
+
     const ZERO: Self = Float32::ZERO;
     const ONE: Self = Float32::ONE;
 }
@@ -85,6 +97,16 @@ impl FloatTraitsForComplex for Float64 {
     #[inline]
     fn atan(&self) -> Self {
         Float64::atan(*self)
+    }
+
+    #[inline]
+    fn from_f32(x: f32) -> Self {
+        Self(x as f64)
+    }
+
+    #[inline]
+    fn from_f64(x: f64) -> Self {
+        Self(x)
     }
 
     const ZERO: Self = Float64::ZERO;
@@ -129,6 +151,11 @@ impl<F: FloatTraitsForComplex> Complex<F> {
     #[inline]
     pub fn conjugate(&self) -> Self {
         Self::new(self.real, -self.imag)
+    }
+
+    #[inline]
+    pub fn scale(&self, s: F) -> Self {
+        Self::new(self.real * s, self.imag * s)
     }
 }
 
