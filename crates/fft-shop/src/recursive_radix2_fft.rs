@@ -1,4 +1,4 @@
-use crate::common::{n_is_power_of_2, unit_complex};
+use crate::helper::{n_is_power_of_2, unit_complex};
 use refined_float::{Complex, FloatTraitsForComplex};
 
 fn fft_local<F: FloatTraitsForComplex, const SIGN: i64>(

@@ -1,4 +1,4 @@
-use crate::common::unit_complex;
+use crate::helper::unit_complex;
 use refined_float::{Complex, FloatTraitsForComplex};
 
 /// Discrete Fourier Transform
