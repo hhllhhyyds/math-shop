@@ -15,4 +15,4 @@ version = "0.1.3"
 refined-float = {version = "0.2.0", path = "crates/refined-float"}
 
 [workspace]
-members = ["crates/refined-float"]
+members = ["crates/refined-float", "crates/fft-shop"]
