@@ -1,11 +1,12 @@
 [package]
 authors = ["hhllhhyyds <hhllhhyyds@sina.com>"]
-description = "mathematical tools in pure Rust"
+description = "Implemention of different fft algorithms"
 edition = "2021"
 keywords = ["math", "fft", "dft"]
 license = "MIT"
 name = "fft-shop"
-version = "0.1.0"
+repository = "https://github.com/hhllhhyyds/math-shop/tree/main/crates/fft-shop"
+version = "0.1.1"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
