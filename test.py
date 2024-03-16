@@ -2,12 +2,12 @@ import os
 import argparse
 
 
-def prGreen(skk):
+def print_green(skk):
     print("\033[92m {}\033[00m" .format(skk), end="")
 
 
 def run_cmd(cmd):
-    prGreen("Running ")
+    print_green("Running ")
     print(cmd)
     if os.system(cmd) != 0:
         quit()
