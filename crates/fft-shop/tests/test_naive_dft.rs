@@ -1,7 +1,8 @@
 use approx::AbsDiffEq;
 use fft_shop::naive_dft;
-use rand::{thread_rng, Rng};
 use refined_float::{Complex, Float32, Float64};
+
+mod common;
 
 #[test]
 fn test_naive_dft() {
@@ -33,15 +34,7 @@ fn test_naive_dft() {
 
 #[test]
 fn test_inverse_dft() {
-    let mut rng = thread_rng();
-    let data = (0..1000)
-        .map(|_| {
-            Complex::new(
-                Float64(rng.gen_range(-1.0..1.0)),
-                Float64(rng.gen_range(-1.0..1.0)),
-            )
-        })
-        .collect::<Vec<_>>();
+    let data = common::random_complex_in_unit_square(1000).collect::<Vec<_>>();
     let dft = naive_dft::dft(&data);
     let idft = naive_dft::idft(&dft);
 
