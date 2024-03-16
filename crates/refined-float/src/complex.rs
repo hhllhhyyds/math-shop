@@ -263,8 +263,9 @@ impl<F: FloatTraitsForComplex + Debug + PartialOrd> Debug for Complex<F> {
     fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         write!(
             f,
-            "{}({:#?} {} {:#?} I)",
-            stringify!(Complex<F>),
+            "{}{}({:#?} {} {:#?} I)",
+            stringify!(Complex),
+            core::mem::size_of::<F>() * 8,
             self.real,
             if self.imag > F::ZERO { '+' } else { '-' },
             if self.imag > F::ZERO {
