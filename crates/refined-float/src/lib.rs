@@ -1,4 +1,5 @@
 #![deny(warnings)]
+#![cfg_attr(not(feature = "std"), no_std)]
 
 mod complex;
 mod float32;

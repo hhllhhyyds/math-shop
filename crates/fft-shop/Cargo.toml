@@ -10,8 +10,13 @@ version = "0.1.1"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[features]
+default = ["std-float"]
+libm-float = ["refined-float/libm"]
+std-float = ["refined-float/std"]
+
 [dependencies]
-refined-float = {version = "0.2.0", path = "../refined-float", features = ["approx"]}
+refined-float = {version = "0.2.0", path = "../refined-float", default-features = false, features = ["approx"], optional = true}
 
 [dev-dependencies]
 approx = {workspace = true}

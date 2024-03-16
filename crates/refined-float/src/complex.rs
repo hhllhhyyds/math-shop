@@ -260,7 +260,7 @@ impl<F: FloatTraitsForComplex> core::iter::Product for Complex<F> {
 }
 
 impl<F: FloatTraitsForComplex + Debug + PartialOrd> Debug for Complex<F> {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         write!(
             f,
             "{}({:#?} {} {:#?} I)",
@@ -277,7 +277,7 @@ impl<F: FloatTraitsForComplex + Debug + PartialOrd> Debug for Complex<F> {
 }
 
 impl<F: FloatTraitsForComplex + Display + PartialOrd> Display for Complex<F> {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
         write!(
             f,
             "{} {} {} I",

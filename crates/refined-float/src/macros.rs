@@ -54,13 +54,13 @@ macro_rules! impl_neg_trait {
 macro_rules! impl_debug_display_trait {
     ($fl_ty: ty) => {
         impl core::fmt::Debug for $fl_ty {
-            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+            fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
                 core::fmt::Debug::fmt(&self.0, f)
             }
         }
 
         impl core::fmt::Display for $fl_ty {
-            fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+            fn fmt(&self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result {
                 core::fmt::Display::fmt(&self.0, f)
             }
         }
