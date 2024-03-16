@@ -47,5 +47,5 @@ fn test_inverse_dft() {
 
     data.iter()
         .zip(idft.iter())
-        .for_each(|(x, y)| assert!(x.abs_diff_eq(&y, Float64(1e-12))))
+        .for_each(|(x, y)| assert!(x.abs_diff_eq(&y, Float64(1e-14))))
 }

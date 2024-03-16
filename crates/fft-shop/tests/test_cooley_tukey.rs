@@ -1,12 +1,12 @@
 use approx::AbsDiffEq;
-use fft_shop::{naive_dft, recursive_radix2_fft};
+use fft_shop::{cooley_tukey, recursive_radix2_fft};
 use rand::{thread_rng, Rng};
 use refined_float::{Complex, Float64};
 
 #[test]
 fn test_fft() {
     let mut rng = thread_rng();
-    let data = (0..1024)
+    let data = (0..1024 * 256)
         .map(|_| {
             Complex::new(
                 Float64(rng.gen_range(-1.0..1.0)),
@@ -15,11 +15,11 @@ fn test_fft() {
         })
         .collect::<Vec<_>>();
 
-    let fft0 = naive_dft::dft(&data);
-    let fft1 = recursive_radix2_fft::fft(&data);
+    let fft0 = recursive_radix2_fft::fft(&data);
+    let fft1 = cooley_tukey::fft(&data);
 
     for (x, y) in fft0.iter().zip(fft1.iter()) {
-        assert!(x.abs_diff_eq(y, Float64(1e-12)));
+        assert!(x == y);
     }
 }
 
@@ -35,8 +35,8 @@ fn test_ifft() {
         })
         .collect::<Vec<_>>();
 
-    let fft = recursive_radix2_fft::fft(&data);
-    let ifft = recursive_radix2_fft::ifft(&fft);
+    let fft = cooley_tukey::fft(&data);
+    let ifft = cooley_tukey::ifft(&fft);
 
     for (x, y) in data.iter().zip(ifft.iter()) {
         assert!(x.abs_diff_eq(y, Float64(1e-14)));
